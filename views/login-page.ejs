@@ -6,7 +6,7 @@
 			class="col-6"
 			width="250"
 			height="250"
-			src="/static/img/login-cover.webp"
+			src="/static/img/login-cover.svg"
 			alt="login cover img"
 			srcset=""
 		/>
@@ -16,10 +16,9 @@
 			<p class="text-secondary">
 				Sign in now to take control of your bushiness success.
 			</p>
-			<!--  -->
+
 			<form action="/login" method="POST" class="was-validated" novalidate>
 				<div class="mb-3 mt-3">
-					<!-- <label for="uname" class="form-label">Username:</label> -->
 					<input
 						type="email"
 						class="form-control"
@@ -32,7 +31,6 @@
 					<div class="invalid-feedback">Please fill out this field.</div>
 				</div>
 				<div class="mb-3">
-					<!-- <label for="pwd" class="form-label">Password:</label> -->
 					<input
 						type="password"
 						class="form-control"
@@ -44,21 +42,55 @@
 					<div class="valid-feedback">Valid.</div>
 					<div class="invalid-feedback">Please fill out this field.</div>
 				</div>
-				<p>forgot password</p>
+				<div class="d-flex justify-content-between">
+					<div>
+						<input
+							class="form-check-input"
+							type="checkbox"
+							value=""
+							id="flexCheckChecked"
+							checked
+						/>
+						<label
+							class="form-check-label text-secondary h6 fw-normal"
+							for="flexCheckChecked"
+						>
+							Remember me?
+						</label>
+					</div>
+
+					<a href="#" id="forget-password">
+						<p class="h6 fw-normal">Forgot password?</p>
+					</a>
+				</div>
 				<div class="d-grid gap-2">
 					<button id="btn-login" type="submit" class="btn btn-primary">
 						LOG IN
 					</button>
 				</div>
 			</form>
-
-			<!--  -->
 		</div>
 	</section>
 	<section class="alerts-display">
-		<div id="incorrect-username" class="alert alert-danger d-none" role="alert">
+		<div
+			id="incorrect-username"
+			class="alert alert-danger alert-dismissible fade show d-block fas fa-car-side fa-3x"
+			data-mdb-toggle="animation"
+			data-mdb-animation-reset="true"
+			data-mdb-animation="slide-out-right"
+			role="alert"
+		>
 			Incorrect username or password
+			<button
+				type="button"
+				class="btn-close"
+				data-bs-dismiss="alert"
+				aria-label="Close"
+			></button>
 		</div>
+		<!-- <div id="incorrect-username" class="alert alert-danger d-none" role="alert">
+			Incorrect username or password
+		</div> -->
 		<div id="logout-success" class="alert alert-success d-none" role="alert">
 			Log out success full
 		</div>

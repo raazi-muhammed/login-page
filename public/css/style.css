@@ -42,6 +42,7 @@ main {
 .main__section {
 	background-color: white;
 	display: flex;
+	height: auto;
 	align-items: center;
 	padding: 4rem var(--PADDING);
 	border-radius: var(--CORNER-RADIUS);
@@ -53,10 +54,32 @@ main {
 	& input {
 		height: 3rem;
 		border-radius: var(--CORNER-RADIUS-SMALL);
-		border: none;
 		background-color: hsla(213, 87%, 49%, 0.08);
+		border: none;
+
 		font-size: 1.2rem;
 		padding: var(--PADDING);
+	}
+
+	& #flexCheckChecked {
+		padding: 0;
+		background-color: hsla(213, 87%, 49%, 0.08);
+
+		height: 1rem;
+		width: 1rem;
+		font-size: 1rem;
+	}
+
+	& #flexCheckChecked:checked {
+		background-color: var(--COLOR-PRIMARY);
+	}
+
+	& #forget-password {
+		color: #6c757d;
+	}
+
+	& #forget-password:hover {
+		color: var(--COLOR-PRIMARY);
 	}
 
 	& button {
@@ -89,8 +112,7 @@ main {
 
 /* Dashboard */
 .main__section--dashboard {
-	display: flex;
-	flex-direction: column;
+	overflow-y: auto;
 
 	& h2 {
 		padding-inline: 4rem;
@@ -114,6 +136,14 @@ main {
 		width: 25rem;
 		min-width: 25rem;
 		height: auto;
+	}
+
+	& .hover-shadow {
+		transition: 0.3s;
+	}
+	& .hover-shadow:hover {
+		transform: scale(1.1);
+		box-shadow: 0 0 12px #1071e878;
 	}
 
 	& .section--accent {

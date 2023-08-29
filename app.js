@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
+const dashboard = require("./routes/dashboard");
+
 const session = require("express-session");
 const { v4: uuidv4 } = require("uuid");
-const { send } = require("process");
-
-/* const showIncorrectUsername = require("showIncorrectUsername"); */
+/* const { send } = require("process"); */
 
 const PORT = 3000;
 const loginDetails = {
@@ -38,8 +38,12 @@ app.get("/", (req, res) => {
 		res.redirect("/dashboard");
 		/* res.render("dashboard-page"); */
 	} else {
-		res.render("login-page");
+		res.redirect("/login");
 	}
+});
+
+app.get("/login", (req, res) => {
+	res.render("login-page");
 });
 
 app.post("/login", (req, res) => {
@@ -56,18 +60,15 @@ app.post("/login", (req, res) => {
 	}
 });
 
-app.get("/dashboard", (req, res) => {
-	console.log("das: " + session.user);
-	if (req.session.user) {
-		res.render("dashboard-page");
-	} else {
-		res.redirect("/");
-	}
-});
+app.use("/dashboard", dashboard);
 
 app.post("/logout", (req, res) => {
-	req.session.destroy();
-	res.redirect("/");
+	try {
+		req.session.destroy();
+	} catch (error) {
+		console.log("Not Destroyed");
+	}
+	res.redirect("/login");
 });
 
 app.listen(PORT, () => {
