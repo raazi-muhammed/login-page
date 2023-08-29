@@ -14,10 +14,10 @@
 		<div class="col-12 col-md-6">
 			<h1>InsightDash</h1>
 			<p class="text-secondary">
-				Sign in now to take control of your bushiness success
+				Sign in now to take control of your bushiness success.
 			</p>
 			<!--  -->
-			<form action="/login" method="POST" class="needs-validated">
+			<form action="/login" method="POST" class="was-validated" novalidate>
 				<div class="mb-3 mt-3">
 					<!-- <label for="uname" class="form-label">Username:</label> -->
 					<input
@@ -46,11 +46,21 @@
 				</div>
 				<p>forgot password</p>
 				<div class="d-grid gap-2">
-					<button type="submit" class="btn btn-primary">LOG IN</button>
+					<button id="btn-login" type="submit" class="btn btn-primary">
+						LOG IN
+					</button>
 				</div>
 			</form>
 
 			<!--  -->
+		</div>
+	</section>
+	<section class="alerts-display">
+		<div id="incorrect-username" class="alert alert-danger d-none" role="alert">
+			Incorrect username or password
+		</div>
+		<div id="logout-success" class="alert alert-success d-none" role="alert">
+			Log out success full
 		</div>
 	</section>
 </main>
