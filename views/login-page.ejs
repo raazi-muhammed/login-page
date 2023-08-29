@@ -1,0 +1,58 @@
+<%- include("./layout/header.ejs")%>
+
+<main>
+	<section class="main__section row">
+		<img
+			class="col-6"
+			width="250"
+			height="250"
+			src="/static/img/login-cover.webp"
+			alt="login cover img"
+			srcset=""
+		/>
+
+		<div class="col-12 col-md-6">
+			<h1>InsightDash</h1>
+			<p class="text-secondary">
+				Sign in now to take control of your bushiness success
+			</p>
+			<!--  -->
+			<form action="/login" method="POST" class="needs-validated">
+				<div class="mb-3 mt-3">
+					<!-- <label for="uname" class="form-label">Username:</label> -->
+					<input
+						type="email"
+						class="form-control"
+						id="uname"
+						placeholder="username"
+						name="uname"
+						required
+					/>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				</div>
+				<div class="mb-3">
+					<!-- <label for="pwd" class="form-label">Password:</label> -->
+					<input
+						type="password"
+						class="form-control"
+						id="pwd"
+						placeholder="password"
+						name="password"
+						required
+					/>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				</div>
+				<p>forgot password</p>
+				<div class="d-grid gap-2">
+					<button type="submit" class="btn btn-primary">LOG IN</button>
+				</div>
+			</form>
+
+			<!--  -->
+		</div>
+	</section>
+</main>
+
+<%- include("./layout/footer")%>
