@@ -58,35 +58,36 @@ const dashboardContent = {
 			status: "Delivered",
 		},
 		{
-			id: 1,
+			id: 2,
 			name: "iPhone 13 mini",
 			date: "Aug 28 2023",
 			status: "Delivered",
 		},
 		{
-			id: 1,
+			id: 3,
 			name: "Samsung S20",
 			date: "Aug 28 2023",
 			status: "Delivered",
 		},
 		{
-			id: 1,
+			id: 4,
 			name: "iPhone 14",
 			date: "Aug 27 2023",
 			status: "Not Delivered",
 		},
 		{
-			id: 1,
+			id: 5,
 			name: "iPhone 13 Pro",
 			date: "Aug 25 2023",
-			status: "Not Delivered",
+			status: "Delivered",
 		},
 	],
 };
 
 router.get("/", (req, res) => {
 	console.log("das: " + req.session.user);
-	if (req.session.user) {
+	/* console.log("una: " + req.body.uname); */
+	if (req.session.user || req.session.user == "guest") {
 		res.render("../views/dashboard-page", {
 			dashboardContent: dashboardContent,
 		});

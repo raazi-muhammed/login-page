@@ -22,7 +22,7 @@
 			/>
 			<p class="h5 fw-bold">Admin</p>
 			<p>admin@admin.com</p>
-			<form action="/logout" method="POST">
+			<form action="/logout" method="POST" class="col-12">
 				<button id="btn-logout" class="btn btn-primary">LOG OUT</button>
 			</form>
 		</section>
@@ -33,7 +33,7 @@
 		<h2 class="fw-bold mt-2">Summary</h2>
 		<article class="col-12 py-2">
 			<% dashboardContent.summary.forEach((element)=>{%>
-			<section class="article__section section--accent row">
+			<section class="article__section section--accent row hover-shadow">
 				<svg
 					class="bi bi-view-list col-3"
 					xmlns="http://www.w3.org/2000/svg"
@@ -56,9 +56,9 @@
 		</article>
 
 		<h2 class="fw-bold">Dashboard</h2>
-		<article class="col-12">
+		<article class="col-12 py-2">
 			<% dashboardContent.dashBoard.forEach((element)=>{ %>
-			<section class="article__section section--bg row">
+			<section class="article__section section--bg row hover-shadow">
 				<div class="d-flex align-items-center justify-content-start col-12">
 					<svg
 						class="bi bi-view-list col-4"
@@ -85,7 +85,7 @@
 				<table class="col-12">
 					<tbody>
 						<% dashboardContent.orderHistory.forEach((element)=>{ %>
-						<tr>
+						<tr class="hover-shadow">
 							<th><%= element.id %></th>
 							<td><%= element.name %></td>
 							<td><%= element.date %></td>

@@ -61,7 +61,7 @@ main {
 		padding: var(--PADDING);
 	}
 
-	& #flexCheckChecked {
+	& #remember {
 		padding: 0;
 		background-color: hsla(213, 87%, 49%, 0.08);
 
@@ -70,7 +70,7 @@ main {
 		font-size: 1rem;
 	}
 
-	& #flexCheckChecked:checked {
+	& #remember:checked {
 		background-color: var(--COLOR-PRIMARY);
 	}
 
@@ -142,8 +142,8 @@ main {
 		transition: 0.3s;
 	}
 	& .hover-shadow:hover {
-		transform: scale(1.1);
-		box-shadow: 0 0 12px #1071e878;
+		transform: scale(1.01);
+		box-shadow: 0 0 12px hsla(213, 87%, 49%, 0.3);
 	}
 
 	& .section--accent {
