@@ -43,7 +43,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-	res.render("login-page");
+	console.log("onLogin: " + req.session.user);
+	res.render("login-page", { message: "" });
+	/* res.render("login-page"); */
 });
 
 app.post("/login", (req, res) => {
@@ -56,7 +58,8 @@ app.post("/login", (req, res) => {
 		res.redirect("/dashboard");
 		console.log("rsu: " + req.session.user);
 	} else {
-		console.log("INCORRECT");
+		console.log("HIH");
+		res.render("login-page", { message: "Incorrect username or password" });
 	}
 });
 
@@ -68,7 +71,9 @@ app.post("/logout", (req, res) => {
 	} catch (error) {
 		console.log("Not Destroyed");
 	}
-	res.redirect("/login");
+	res.render("login-page", { message: "Logout Successful" });
+	/* res.redirect("/login"); */
+	/* window.location.reload(); */
 });
 
 app.listen(PORT, () => {

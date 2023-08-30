@@ -1,23 +1,18 @@
-try {
-	document.querySelector("#btn-login").addEventListener("click", () => {
-		setTimeout(() => {
-			document
-				.querySelector("#incorrect-username")
-				.classList.replace("d-none", "d-block");
-		}, 200);
-	});
-} catch (error) {
-	console.log("Alerst are not working");
-}
+/* If browser back button was used, flush cache */
+(function () {
+	window.onpageshow = function (event) {
+		if (event.persisted) {
+			window.location.reload();
+		}
+	};
+})();
 
-try {
-	document.querySelector("#btn-logout").addEventListener("click", () => {
-		setTimeout(() => {
-			document
-				.querySelector("#logout-success")
-				.classList.replace("d-none", "d-block");
-		}, 200);
-	});
-} catch (error) {
-	console.log("LOUTOUT");
-}
+/* Form */
+const form = document.querySelector("form");
+
+form.addEventListener("submit", (e) => {
+	if (!form.checkValidity()) {
+		e.preventDefault();
+	}
+	form.classList.add("was-validated");
+});

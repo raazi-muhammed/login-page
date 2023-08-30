@@ -172,6 +172,9 @@ main {
 		justify-content: space-between;
 	}
 
+	& th {
+		width: 2rem;
+	}
 	& td {
 		width: 15rem;
 	}

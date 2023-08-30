@@ -17,7 +17,7 @@
 				Sign in now to take control of your bushiness success.
 			</p>
 
-			<form action="/login" method="POST" class="was-validated" novalidate>
+			<form action="/login" method="POST" novalidate>
 				<div class="mb-3 mt-3">
 					<input
 						type="email"
@@ -72,15 +72,16 @@
 		</div>
 	</section>
 	<section class="alerts-display">
+		<% if (message == "Logout Successful") {%>
 		<div
 			id="incorrect-username"
-			class="alert alert-danger alert-dismissible fade show d-block fas fa-car-side fa-3x"
+			class="alert alert-success alert-dismissible fade show fas fa-car-side fa-3x"
 			data-mdb-toggle="animation"
 			data-mdb-animation-reset="true"
 			data-mdb-animation="slide-out-right"
 			role="alert"
 		>
-			Incorrect username or password
+			<%- message%>
 			<button
 				type="button"
 				class="btn-close"
@@ -88,12 +89,24 @@
 				aria-label="Close"
 			></button>
 		</div>
-		<!-- <div id="incorrect-username" class="alert alert-danger d-none" role="alert">
-			Incorrect username or password
-		</div> -->
-		<div id="logout-success" class="alert alert-success d-none" role="alert">
-			Log out success full
+		<% } %> <% if (message == "Incorrect username or password") {%>
+		<div
+			id="incorrect-username"
+			class="alert alert-danger alert-dismissible fade show fas fa-car-side fa-3x"
+			data-mdb-toggle="animation"
+			data-mdb-animation-reset="true"
+			data-mdb-animation="slide-out-right"
+			role="alert"
+		>
+			<%- message%>
+			<button
+				type="button"
+				class="btn-close"
+				data-bs-dismiss="alert"
+				aria-label="Close"
+			></button>
 		</div>
+		<% } %>
 	</section>
 </main>
 
