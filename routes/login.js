@@ -6,6 +6,15 @@ const loginDetails = {
 	password: "admin",
 };
 
+//back button to homepage
+router.use(function (req, res, next) {
+	res.set(
+		"Cache-Control",
+		"no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
+	);
+	next();
+});
+
 router.get("/", (req, res) => {
 	res.render("login-page", { message: "", className: "Hi" });
 });
