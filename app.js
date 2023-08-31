@@ -2,11 +2,12 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
-const dashboard = require("./routes/dashboard");
-const login = require("./routes/login");
-
 const session = require("express-session");
 const { v4: uuidv4 } = require("uuid");
+
+const dashboard = require("./routes/dashboard");
+const login = require("./routes/login");
+const logout = require("./routes/logout");
 
 const PORT = 3000;
 
@@ -45,15 +46,7 @@ app.use(function (req, res, next) {
 
 app.use("/login", login);
 app.use("/dashboard", dashboard);
-
-app.post("/logout", (req, res) => {
-	try {
-		req.session.destroy();
-	} catch (error) {
-		console.log(error);
-	}
-	res.render("login-page", { message: "Logout Successful", className: "" });
-});
+app.use("/logout", logout);
 
 app.listen(PORT, () => {
 	console.log("Server Started");

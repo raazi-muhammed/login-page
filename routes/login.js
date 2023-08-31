@@ -15,19 +15,8 @@ router.post("/", (req, res) => {
 		req.body.uname == loginDetails.email &&
 		req.body.password == loginDetails.password
 	) {
-		req.session.user = req.body.uname;
+		req.session.user = req.body;
 		res.redirect("/dashboard");
-		console.log("rsu: " + req.body.uname);
-
-		if (!req.body.remember) {
-			try {
-				console.log("body.remeber");
-				/* req.body.uname = "guest"; */
-				/* req.session.destroy(); */
-			} catch (error) {
-				console.log(error);
-			}
-		}
 	} else {
 		console.log("HIH");
 		res.render("login-page", {
