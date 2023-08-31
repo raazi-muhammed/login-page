@@ -2,17 +2,29 @@ const express = require("express");
 const router = express.Router();
 const dashboardContent = require("../model/data");
 const bcrypt = require("bcrypt");
-const checkCredentials = require("../controllers/checkCredentials");
 
-router.use(function (req, res, next) {
-	res.set(
-		"Cache-Control",
-		"no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
-	);
-	next();
-});
+function checkCredentials(req, res, next) {
+	const loginDetails = {
+		email: "admin@admin.com",
+		password: "admin", //admin
+	};
 
-router.get("/", (req, res) => {
+	try {
+		if (
+			req.session.user.uname == loginDetails.email &&
+			req.session.user.password == loginDetails.password
+		) {
+			next();
+		} else {
+			throw new Error();
+		}
+	} catch (error) {
+		console.log("check catch");
+		res.redirect("/login");
+	}
+}
+
+router.get("/", checkCredentials, (req, res) => {
 	res.render("../views/dashboard-page", { dashboardContent });
 	if (req.session.user.remember != "true") req.session.destroy();
 });

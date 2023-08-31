@@ -1,33 +1,73 @@
 const express = require("express");
 const router = express.Router();
+const session = require("express-session");
+const { dashBoard } = require("../model/data");
+const bcrypt = require("bcrypt");
 
-const loginDetails = {
-	email: "admin@admin.com",
-	password: "admin",
-};
+async function hashPass(password) {
+	try {
+		const hashedPass = await bcrypt.hash(password, 10);
+		console.log(hashedPass);
+	} catch (error) {
+		console.log(error);
+	}
+}
 
-//back button to homepage
-router.use(function (req, res, next) {
-	res.set(
-		"Cache-Control",
-		"no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
-	);
+function checkCredentials(req, res, next) {
+	console.log(req.session.user);
+	/* const loginDetails = {
+		email: "admin@admin.com",
+		password: "$2b$10$hm3Oj5L/hASs.7.drRSBLe6FIbjiImfyxlBmjhVw7u/UhRs9DnA3K", //admin
+	};
+
+	try {
+		const passCorrect = await bcrypt.compare(
+			req.session.user.password,
+			loginDetails.password
+		);
+		if (req.session.user.uname == loginDetails.email && passCorrect) {
+			next();
+		} else {
+			throw new Error("Hi");
+		}
+	} catch (error) {
+		console.log("check catch");
+		res.render("login-page", {
+			message: "Incorrect username or password",
+			className: "was-validated",
+		});
+	} */
+}
+
+function test(req, res, next) {
+	console.log(req.session.user);
 	next();
-});
-
+}
 router.get("/", (req, res) => {
 	res.render("login-page", { message: "", className: "Hi" });
 });
 
-router.post("/", (req, res) => {
-	if (
-		req.body.uname == loginDetails.email &&
-		req.body.password == loginDetails.password
-	) {
-		req.session.user = req.body;
-		res.redirect("/dashboard");
-	} else {
-		console.log("HIH");
+router.post("/", test, async (req, res) => {
+	req.session.user = req.body;
+
+	const loginDetails = {
+		email: "admin@admin.com",
+		password: "$2b$10$hm3Oj5L/hASs.7.drRSBLe6FIbjiImfyxlBmjhVw7u/UhRs9DnA3K", //admin
+	};
+
+	try {
+		const passCorrect = await bcrypt.compare(
+			req.session.user.password,
+			loginDetails.password
+		);
+		console.log(passCorrect);
+		if (req.session.user.uname == loginDetails.email && passCorrect) {
+			res.redirect("/dashboard");
+		} else {
+			throw new Error("Hi");
+		}
+	} catch (error) {
+		console.log("check catch");
 		res.render("login-page", {
 			message: "Incorrect username or password",
 			className: "was-validated",
