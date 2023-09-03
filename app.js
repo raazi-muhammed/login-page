@@ -50,5 +50,5 @@ app.use("/logout", logout);
 app.use("/admin", admin);
 
 app.listen(PORT, () => {
-	console.log(`Server Started on ${PORT}`);
+	console.log("Server Started");
 });
