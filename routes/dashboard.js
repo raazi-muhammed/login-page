@@ -1,32 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const dashboardContent = require("../model/data");
-const bcrypt = require("bcrypt");
+const authenticateCredentials = require("../controllers/authenticatoin");
 
-function checkCredentials(req, res, next) {
-	const loginDetails = {
-		email: "admin@admin.com",
-		password: "admin", //admin
-	};
-
+router.get("/", async (req, res) => {
+	let isCorrectCredentials;
 	try {
-		if (
-			req.session.user.uname == loginDetails.email &&
-			req.session.user.password == loginDetails.password
-		) {
-			next();
-		} else {
-			throw new Error();
-		}
+		isCorrectCredentials = await authenticateCredentials(
+			req.session.user.uname,
+			req.session.user.password
+		);
+		console.log(isCorrectCredentials);
 	} catch (error) {
-		console.log("check catch");
+		isCorrectCredentials = false;
+	}
+
+	if (isCorrectCredentials) {
+		res.render("../views/dashboard-page", { dashboardContent });
+		if (req.session.user.remember != "true") req.session.destroy();
+	} else {
 		res.redirect("/login");
 	}
-}
-
-router.get("/", checkCredentials, (req, res) => {
-	res.render("../views/dashboard-page", { dashboardContent });
-	if (req.session.user.remember != "true") req.session.destroy();
 });
 
 module.exports = router;

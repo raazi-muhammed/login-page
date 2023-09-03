@@ -29,12 +29,6 @@ app.use(
 //static
 app.use("/static", express.static(path.join(__dirname, "/public")));
 
-//home page
-app.get("/", (req, res) => {
-	if (req.session.user) res.redirect("/dashboard");
-	if (!req.session.user) res.redirect("/login");
-});
-
 //back button to homepage
 app.use(function (req, res, next) {
 	res.set(
@@ -44,6 +38,11 @@ app.use(function (req, res, next) {
 	next();
 });
 
+//home page
+app.get("/", (req, res) => {
+	if (req.session.user) res.redirect("/dashboard");
+	if (!req.session.user) res.redirect("/login");
+});
 app.use("/login", login);
 app.use("/dashboard", dashboard);
 app.use("/logout", logout);

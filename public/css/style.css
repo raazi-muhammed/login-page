@@ -258,3 +258,22 @@ article {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
+
+/* Animation */
+.alert {
+	animation: pop-up 0.5s;
+	animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+	animation-fill-mode: forwards;
+	transform: scale(0);
+}
+
+@keyframes pop-up {
+	0% {
+		transform: translateY(200%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
