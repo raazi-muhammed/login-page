@@ -9,7 +9,6 @@ router.get("/", async (req, res) => {
 			req.session.user.uname,
 			req.session.user.password
 		);
-		console.log(userID);
 	} catch (error) {
 		userID = false;
 	}

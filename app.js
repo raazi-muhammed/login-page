@@ -43,6 +43,7 @@ app.get("/", (req, res) => {
 	if (req.session.user) res.redirect("/dashboard");
 	if (!req.session.user) res.redirect("/login");
 });
+
 app.use("/login", login);
 app.use("/dashboard", dashboard);
 app.use("/logout", logout);

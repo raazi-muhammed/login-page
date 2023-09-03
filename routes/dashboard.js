@@ -10,13 +10,11 @@ router.get("/", async (req, res) => {
 			req.session.user.uname,
 			req.session.user.password
 		);
-		console.log(userID);
 	} catch (error) {
 		userID = false;
 	}
 
 	if (userID) {
-		console.log(userID);
 		let userDetails = authentication.loginDetails[userID];
 		res.render("../views/dashboard-page", { dashboardContent, userDetails });
 		if (req.session.user.remember != "true") req.session.destroy();

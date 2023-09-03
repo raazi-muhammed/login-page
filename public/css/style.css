@@ -243,11 +243,6 @@ aside {
 	}
 }
 
-/* .main__section {
-	box-shadow: 0 0 26px red;
-}
- */
-
 /* Hide scrollbar for Chrome, Safari and Opera */
 article::-webkit-scrollbar {
 	display: none;
