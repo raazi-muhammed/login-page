@@ -1,0 +1,57 @@
+<%- include("./layout/header.ejs")%>
+
+<body class="dashboard-body row text-light">
+	<aside class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 bg-dark">
+		<section class="d-flex align-items-center">
+			<img
+				style="margin-right: 0.25rem"
+				src="/static/img/logo.webp"
+				alt="InsightDash Logo"
+				srcset=""
+			/>
+			<p class="h3 mb-0 fw-bold text-primary">InsightDash</p>
+		</section>
+		<section class="profile-section w-100">
+			<img
+				class="mx-auto profile-img"
+				width="36"
+				height="36"
+				src="/static/img/profile.webp"
+				alt="Profile Photo"
+				srcset=""
+			/>
+			<p class="h5 fw-bold">Admin</p>
+			<p>admin@admin.com</p>
+			<form action="/logout" method="POST" class="col-12">
+				<button id="btn-logout" class="btn btn-primary">LOG OUT</button>
+			</form>
+		</section>
+	</aside>
+	<main
+		class="main__section--dashboard col-12 col-sm-7 col-md-8 col-lg-9 col-xl-10 row m-0 p-0 pt-4"
+		style="
+			backdrop-filter: brightness(0.2);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+		"
+	>
+		<h2 class="fw-bold">Users Details</h2>
+		<article class="col-12">
+			<section class="article__section section--table col-12 row">
+				<table class="col-12">
+					<tbody>
+						<% usersDetails.forEach((element, index)=>{ %>
+						<tr class="hover-shadow bg-dark">
+							<td><%= element.name %></td>
+							<td><%= element.email %></td>
+							<td><%= element.admin %></td>
+						</tr>
+						<% }) %>
+					</tbody>
+				</table>
+			</section>
+		</article>
+	</main>
+</body>
+<%- include("./layout/footer")%>

@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 const dashboard = require("./routes/dashboard");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
-
+const admin = require("./routes/admin");
 const PORT = 3000;
 
 app.set("view engine", "ejs");
@@ -46,6 +46,7 @@ app.get("/", (req, res) => {
 app.use("/login", login);
 app.use("/dashboard", dashboard);
 app.use("/logout", logout);
+app.use("/admin", admin);
 
 app.listen(PORT, () => {
 	console.log("Server Started");

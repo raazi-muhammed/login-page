@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { dashBoard } = require("../model/data");
-const authenticateCredentials = require("../controllers/authenticatoin");
+const authentication = require("../controllers/authenticatoin");
 
 router.get("/", (req, res) => {
 	res.render("login-page", { message: "", className: "" });
@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
 	req.session.user = req.body;
 
-	const isCorrectCredentials = await authenticateCredentials(
+	const isCorrectCredentials = await authentication.authenticateCredentials(
 		req.session.user.uname,
 		req.session.user.password
 	);

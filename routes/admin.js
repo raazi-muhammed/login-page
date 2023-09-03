@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const dashboardContent = require("../model/data");
 const authentication = require("../controllers/authenticatoin");
 
 router.get("/", async (req, res) => {
@@ -15,13 +14,15 @@ router.get("/", async (req, res) => {
 		userID = false;
 	}
 
-	if (userID) {
-		console.log(userID);
-		let userDetails = authentication.loginDetails[userID];
-		res.render("../views/dashboard-page", { dashboardContent, userDetails });
-		if (req.session.user.remember != "true") req.session.destroy();
+	if (userID == 0) {
+		res.render("../views/admin-page", {
+			usersDetails: authentication.loginDetails,
+		});
 	} else {
-		res.redirect("/login");
+		res.render("../views/login-page", {
+			message: "Do not have Admin Access",
+			className: "",
+		});
 	}
 });
 

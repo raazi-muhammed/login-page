@@ -20,8 +20,8 @@
 				alt="Profile Photo"
 				srcset=""
 			/>
-			<p class="h5 fw-bold">Admin</p>
-			<p>admin@admin.com</p>
+			<p class="h5 fw-bold"><%- userDetails.name %></p>
+			<p><%- userDetails.email %></p>
 			<form action="/logout" method="POST" class="col-12">
 				<button id="btn-logout" class="btn btn-primary">LOG OUT</button>
 			</form>
